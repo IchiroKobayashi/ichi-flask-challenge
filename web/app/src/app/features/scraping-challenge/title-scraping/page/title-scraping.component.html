@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta http-equiv="content-type" charset="utf-8">
+  <title>Test Application</title>
+</head>
+
+<body>
+<ng-container *ngIf="pageReady">
+<h1>{{ texts['title']}}</h1>
+
+<p>URL：[,]カンマ区切りで複数入力</p>
+<p><textarea name="urls" rows="10" cols="80" placeholder="URL記入" [(ngModel)]="urls"></textarea></p>
+<p><button (click)='getTitles()'>Scrape</button></p>
+
+<ul id="titles" *ngIf="isTitle">
+  <li *ngFor="let title of titles">
+    {{title.Title}}：{{title.Time}} 秒
+  </li>
+</ul>
+
+
+<p><button (click)='notifyMe()'>Notify</button></p>
+
+</ng-container>
+
+</body>
+
+</html>

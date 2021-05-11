@@ -1,0 +1,3 @@
+Flask
+mecab-python3
+pymysql
