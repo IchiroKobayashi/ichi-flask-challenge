@@ -1,3 +1,4 @@
-Flask
-mecab-python3
-pymysql
+Flask==1.1.2
+Flask-Cors==3.0.10
+mecab-python3==1.0.3
+PyMySql==1.0.2

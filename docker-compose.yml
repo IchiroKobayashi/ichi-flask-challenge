@@ -21,7 +21,7 @@ services:
       - services
 
   api:
-    image: ichi-flask-challenge:python-3.9.5-slim-buster
+    image: ichi-flask-challenge:python-3.7.10-slim-buster
     build:
       context: ./docker/python
       dockerfile: Dockerfile
@@ -34,14 +34,14 @@ services:
       - ./api:/api
     working_dir: /api/src
     logging:
-      driver: "none"
+      driver: json-file
     environment:
       - APP_STAGE=local
       - LOG_LEVEL=debug
       - MYSQL_CONNECTION
     depends_on:
       - db
-    restart: always
+    # restart: always
     networks:
       - services
 
