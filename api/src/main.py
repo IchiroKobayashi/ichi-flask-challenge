@@ -2,8 +2,10 @@
 from flask import Flask, jsonify
 from flask_cors import CORS
 import db
+from controller import scrape_controller
 
 app = Flask(__name__)
+app.register_blueprint(scrape_controller.scrape_app)
 app.config['JSON_AS_ASCII'] = False #日本語文字化け対策
 app.config["JSON_SORT_KEYS"] = False #ソートをそのまま
 CORS(
@@ -30,16 +32,6 @@ def create(name):
             'status':'OK',
             'members':members
         })
-
-
-@app.route("/api/v1/scrape", methods=['GET'])
-def scrape():
-    # TODO: ロジックを書く。必要ライブラリをimportする。
-    result = {
-        "firstname": "佐藤",
-        "lastname": "太郎",
-    }
-    return jsonify(result)
 
 @app.after_request
 def after_request(response):
