@@ -2,10 +2,10 @@
 from flask import Flask, jsonify
 from flask_cors import CORS
 import db
-from controller import scrape_controller
+import router
 
 app = Flask(__name__)
-app.register_blueprint(scrape_controller.scrape_app)
+app.register_blueprint(router.router)
 app.config['JSON_AS_ASCII'] = False #日本語文字化け対策
 app.config["JSON_SORT_KEYS"] = False #ソートをそのまま
 CORS(
