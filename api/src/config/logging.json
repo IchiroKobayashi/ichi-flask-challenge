@@ -1,0 +1,19 @@
+{
+    "version": 1,
+    "formatters": {
+        "file": {
+            "format": "[%(asctime)s] [%(levelname)s] : %(message)s"
+        }
+    },
+    "handlers": {
+        "file": {
+            "class": "logging.handlers.TimedRotatingFileHandler",
+            "formatter": "file",
+            "filename": "./logs/application.log"
+        }
+    },
+    "root": {
+        "level": "WARN",
+        "handlers": ["file"]
+    }
+}
