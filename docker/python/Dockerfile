@@ -19,6 +19,7 @@ ENV LC_ALL ja_JP.UTF-8
 ENV TZ JST-9
 ENV TERM xterm
 RUN pip3 install -U --trusted-host pypi.python.org -r requirements.txt
+RUN cp /etc/mecabrc /usr/local/etc/
 # RUN pip install -r ./src/requirements.txt
 
 # RUN chmod 744 /startup.sh

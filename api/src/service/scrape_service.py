@@ -7,17 +7,19 @@ import markovify
 
 API_KEY = settings.AP
 
+# TODO: 引数受け取る
 def scrape_logic():
-    # TODO: ロジックを書く。必要ライブラリをimportする。
     edit_text()
     make_dictionary()
     tweets = tweet()
     result = {
         "tweets": tweets,
     }
+    # TODO: model使ってmysqlにツイートを保存する。
     return jsonify(result)
 
 def edit_text():
+    # TODO: tweetAPI 取得
     with open("./text/keisuke_honda.txt","r") as f:
         text = f.read()
         table = str.maketrans({
@@ -81,4 +83,5 @@ def tweet():
         tweet = tweet.replace(' ', '')
         print(tweet)
         tweets.append(tweet)
+    # TODO: tweetAPI
     return tweets
