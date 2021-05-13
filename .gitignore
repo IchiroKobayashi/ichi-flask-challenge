@@ -2,3 +2,4 @@
 *.pyc
 db/db-data/
 api/src/logs/application.log
+api/src/.env
