@@ -33,7 +33,7 @@ def edit_text():
         texts = text.translate(table).split()
     url_pattern = "https?://[\w/:%#\$&\?\(\)~\.=\+\-]+"
 
-    for _ in range(10):# TODO: 調査=>なんだか10回くらいやらないとちゃんと文字列が精製されない。
+    for _ in range(10):# TODO: 10回くらいやらないとちゃんと文字列が精製されない。->指定した値と同じ要素を検索し、最初の要素を削除: remove()
         for line in texts:
         # for word in line:
             if re.match(url_pattern, line): # URL
@@ -64,7 +64,7 @@ def make_dictionary():
         text = f.read()
 
     # Build model
-    text_model = markovify.NewlineText(text, state_size=3, well_formed=False)
+    text_model = markovify.NewlineText(text, state_size=3, well_formed=False) # e.g. state_size=2: John ate, state_size=5: John ate a bagel with
 
     # Make Dictionary as Json_format
     with open('./text/learned_data.json', 'w') as f:
