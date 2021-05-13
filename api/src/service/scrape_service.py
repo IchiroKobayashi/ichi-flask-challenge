@@ -32,7 +32,7 @@ def edit_text():
     text = text.translate(table).split()
     url_pattern = "https?://[\w/:%#\$&\?\(\)~\.=\+\-]+"
 
-    for i in range(10):# TODO: 調査=>なんだか10回くらいやらないとちゃんと文字列が精製されない。
+    for _ in range(10):# TODO: 調査=>なんだか10回くらいやらないとちゃんと文字列が精製されない。
         for line in text:
         # for word in line:
             if re.match(url_pattern, line): # URL
@@ -56,6 +56,7 @@ def edit_text():
         f.write(str(splited_line))
     f.close()
 
+
 def make_dictionary():
     # Load file
     text = open("./text/new_keisuke_honda.txt", "r").read()
@@ -73,8 +74,9 @@ def tweet():
         text_model = markovify.Text.from_json(f.read())
 
     tweets = []
-    for i in range(3):
+    for _ in range(10):
         tweet = text_model.make_short_sentence(140)
+        tweet = tweet.replace(' ', '')
         print(tweet)
         tweets.append(tweet)
     return tweets
