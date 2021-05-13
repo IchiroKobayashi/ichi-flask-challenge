@@ -1,5 +1,4 @@
 import MeCab
-import string
 import re
 
 text = open("../text/keisuke_honda.txt","r").read()

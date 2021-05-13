@@ -1,7 +1,7 @@
 import { Observable } from "rxjs";
 import { Injectable} from "@angular/core";
 import { HttpClient} from "@angular/common/http";
-import { TitleScrapingEntity } from '../model/title-scraping.model';
+import { TweetScrapingEntity } from '../model/title-scraping.model';
 import { ScrapingChallengeConst } from '../../constant/scraping-challenge-const';
 
 @Injectable()
@@ -12,20 +12,14 @@ export class TitleScrapingService {
   ) {
   }
 
-  getTitles(urls: string): Observable<Array<TitleScrapingEntity>>{
-    return this.http.get<Array<TitleScrapingEntity>>(
+  getTweets(twitterUserName: string): Observable<TweetScrapingEntity>{
+    return this.http.get<TweetScrapingEntity>(
       ScrapingChallengeConst.API_URL + 'scrape',
       {
         params:{
-          urls: urls
+          twitterUserName: twitterUserName
         }
       }
-    )
-  }
-
-  notifyMe(): Observable<object>{
-    return this.http.get<object>(
-      ScrapingChallengeConst.LAMBDA_ENDPOINT
     )
   }
 

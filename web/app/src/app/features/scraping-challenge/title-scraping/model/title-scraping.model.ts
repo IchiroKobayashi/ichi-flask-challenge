@@ -1,4 +1,3 @@
-export class TitleScrapingEntity {
-  Title?: string;
-  Time?: string;
+export class TweetScrapingEntity {
+  tweets: Array<string>;
 }

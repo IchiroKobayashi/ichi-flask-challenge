@@ -10,21 +10,18 @@
 <ng-container *ngIf="pageReady">
 <h1>{{ texts['title']}}</h1>
 
-<p>URL：[,]カンマ区切りで複数入力</p>
-<p><textarea name="urls" rows="10" cols="80" placeholder="URL記入" [(ngModel)]="urls"></textarea></p>
-<p><button (click)='getTitles()'>Scrape</button></p>
+<h3>Twitterのユーザーのつぶやきを解析して、そのユーザーがつぶやきそうなつぶやきを返すよ◎</h3>
+<p>タグ：マルコフ連鎖、自然言語処理、形態素解析、Twitter、つぶやき解析、bot</p>
+<p><input type="text" name="twitterUserName" size="50" placeholder="@ユーザー名を記入してください" [(ngModel)]="twitterUserName"></p>
+<p><button (click)='getTweets()'>Get Tweets</button></p>
 
-<ul id="titles" *ngIf="isTitle">
-  <li *ngFor="let title of titles">
-    {{title.Title}}：{{title.Time}} 秒
+<ul id="tweets" *ngIf="isTweet">
+  <li *ngFor="let tweet of tweets">
+    {{ tweet }}
   </li>
 </ul>
-
-
-<p><button (click)='notifyMe()'>Notify</button></p>
 
 </ng-container>
 
 </body>
-
 </html>
