@@ -1,5 +1,5 @@
 from flask import Blueprint
-from controller import scrape_controller
+from controller import scrape_controller, user_controller
 from logging import config
 from json import load
 import auth
@@ -20,6 +20,12 @@ def hello_world():
 @auth.requires_auth
 def api_v1_scrape():
     return scrape_controller.scrape()
+
+@router.route("/api/v1/users/getUserList", methods=['GET'])
+@logger.http_request_logging
+@auth.requires_auth
+def api_v1_users_get_user_list():
+    return user_controller.get_user()
 
 @router.after_request
 def after_request(response):

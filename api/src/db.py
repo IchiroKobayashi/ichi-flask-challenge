@@ -1,13 +1,11 @@
-import pymysql
+from flask_sqlalchemy import SQLAlchemy
+from flask_marshmallow import Marshmallow
 
-def getConnection():
-    return pymysql.connect(
-        host='db:3306',# TODO: 正しいか確認する
-        user='local',
-        password='local',
-        db='flask-challenge',
-        charset='utf8mb4',
-        collation='utf8_unicode_ci',
-        parseTime='true',
-        cursorclass=pymysql.cursors.DictCursor,
-    )
+db = SQLAlchemy()
+ma = Marshmallow()
+
+def init_db(app):
+  db.init_app(app)
+
+def init_ma(app):
+  ma.init_app(app)

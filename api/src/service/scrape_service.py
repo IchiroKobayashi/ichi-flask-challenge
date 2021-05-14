@@ -66,7 +66,7 @@ def make_dictionary():
         text = f.read()
 
     # Build model
-    text_model = markovify.NewlineText(text, state_size=3, well_formed=False) # e.g. state_size=2: John ate, state_size=5: John ate a bagel with
+    text_model = markovify.NewlineText(text, state_size=2, well_formed=False) # e.g. state_size=2: John ate, state_size=5: John ate a bagel with
 
     # Make Dictionary as Json_format
     with open('./text/learned_data.json', 'w') as f:
