@@ -6,7 +6,13 @@ from dotenv import load_dotenv
 dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 
-AP = os.environ.get("API_KEY") # 環境変数の値をAPに代入
+# Twitter API
+API_KEY = os.environ.get("API_KEY")
+API_SECRET_KEY = os.environ.get("API_SECRET_KEY")
+ACCESS_TOKEN = os.environ.get("ACCESS_TOKEN")
+ACCESS_TOKEN_SECRET = os.environ.get("ACCESS_TOKEN_SECRET")
+
+# MySQL
 MYSQL_ROOT_PASSWORD = os.environ.get("MYSQL_ROOT_PASSWORD")
 MYSQL_HOST = os.environ.get("MYSQL_HOST")
 MYSQL_DATABASE = os.environ.get("MYSQL_DATABASE")
