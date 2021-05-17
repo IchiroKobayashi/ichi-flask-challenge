@@ -1,9 +1,12 @@
 #!/usr/bin/python3
 from flask import Flask
 from flask_cors import CORS
+import os
 import router
 from config import config
 import db
+from model import models
+from migration import migration
 
 def create_app():
     # Generate Flask App Instance
@@ -30,4 +33,11 @@ def create_app():
 
 app = create_app()
 if __name__ == "__main__":
+    # Migrate before running App 
+    if not os.path.exists('./migrations'):
+        migration.initialize_migration()
+    migration.execute_migration()
+
+    # Run Flask App
     app.run(host='0.0.0.0', debug=True, port=8080, threaded=True)
+    

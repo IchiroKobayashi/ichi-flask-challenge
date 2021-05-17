@@ -12,6 +12,6 @@ class SystemConfig:
         'db': settings.MYSQL_DATABASE
     })
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SQLALCHEMY_ECHO = False
+    SQLALCHEMY_ECHO = True
 
 Config = SystemConfig

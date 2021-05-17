@@ -19,7 +19,7 @@ def scrape_logic():
     return jsonify(result)
 
 def edit_text():
-    # TODO: tweetAPI 取得
+    # TODO: tweetAPI 取得、ファイル名を動的にする、ファイルがあったらAPI投げない=>ファイルを優先的に使う
     with open("./text/keisuke_honda.txt","r") as f:
         text = f.read()
         table = str.maketrans({

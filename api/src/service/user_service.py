@@ -1,9 +1,9 @@
 from flask import make_response, jsonify
-from model.user import User, UserSchema
+from model import models
 
 def get_user_logic():
-    users = User.get_user_list()
-    user_schema = UserSchema(many=True)
+    users = models.User.get_user_list()
+    user_schema = models.UserSchema(many=True)
     return make_response(jsonify({
         'code': 200,
         'users': user_schema.dump(users)
