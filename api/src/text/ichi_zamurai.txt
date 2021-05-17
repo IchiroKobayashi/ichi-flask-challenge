@@ -3,3 +3,438 @@ TwitterAPIのカーソル処理
 next_cursor: 2　に指定された値を
 &amp;cursor=2
 つけてAPI叩くとページ送りできる
+python xxx .py でファイル実行する時に、
+基本は同階層からの読み込みなる。
+上の階層からyyyを importしたい場合は、
+
+sys.path.append('../')
+import yyy
+
+みたいにして、ファイル実行すると問題なくimportできた
+本田圭佑ばりのつぶやきを放つTwitterのbot作る前段階として、挑戦してみやしたww
+
+【Python+MeCab】マルコフ連鎖と形態素解析を使って本田圭佑っぽいTwitterつぶやきを自動生成してみた話
+#エンジニアと繋がりたい #プログラミング #Python #自然言語処理
+https://t.co/QB6dKwv0aQ
+import click
+from flask import Flask
+from flask.cli import AppGroup
+
+app = Flask(__name__)
+user_cli = AppGroup('user')
+
+@user_cli.command('create')
+@click.argument('name')
+def create_user(name):
+    ...
+
+app.cli.add_command(user_cli)
+$ flask user create demo
+__all__は__init__.pyの中で使い、
+__all__ = ["module1", "module2", "module3", ...]
+と__all__変数をインポートするモジュール名をリストにして定義すると、
+
+from package import *
+としたときに、
+リストで指定したモジュールのみをインポートするように制限してくれる
+Python熱が高まってきたので、Flask使ってアプリ作ってみました！
+
+PyPI、気持ちぃぃぃいいいいい！！！
+
+【Python】超簡単！Flaskフレームワークで作るREST APIを試してみた
+#エンジニアと繋がりたい #プログラミング #python  #pythondeveloper #flask #API 
+https://t.co/XxeB3WfvoP
+Python Flask SQL-Alchemy
+網羅しているのはこの記事
+https://t.co/FQhxesQ6aR
+Pythonめっちゃ最高！感覚的に書けるし、JavaScriptにも似てるし、違和感ない✨Go言語やJavaの型も捨てがたいけど、このサクサク感とストレスフリーな言語には感動！ライブラリも揃ってるし、早速MeCabとMarkovifyのコラボで遊んでみた、久々に楽しかった
+@allforbigfire いやぁわざわざありがとうございます✨嬉しいです！共々に頑張って参りましょう🙆‍♂️次の目標は、SysOps のアソシエイトです⤴︎⤴︎
+VSCodeのpylanceのimport相対パスでエラーが起きた時に助かった記事はこれ
+https://t.co/0JemI4d68B
+class Spam:
+    __x = 100
+    def __init__(self):
+        self.__x = 999
+    def method(self):
+        self.__method()
+    def __method(self):
+        print(self.__attr)
+
+spam=Spam()
+spam.method() OK
+spam.__method() NG
+spam.__x NG
+Pythonでは変数やメソッドの名前の前に"__"(_を2つ)をつけることによりprivateにできる
+「 @デコレータ名 」を重ねて、複数のデコレーションを行うことも可能。その際、適用順序は後に書かれたデコレータが先になることに注意
+
+@mydec1
+@mydec2
+def hello():
+    return "konichiwa"
+# この場合、 hello = mydec1(mydec2(hello)) と書いたのと同じ結果になる
+@mydec
+def hello():
+    return "ossu"
+このコードは次のコードと等価
+
+def hello():
+    return "ossu"
+hello = mydec(hello)
+デコレータ
+def ossu():
+    return "ossu"
+
+# 関数を受け取り関数を返す関数
+def mydec(func):
+    def new_func():
+        print "%s function called".format(func.__name__)
+        return func()
+    return new_func
+
+hello = mydec(hello)
+print hello()
+# =&gt; hello function called
+# ossu
+Pythonの名前付けルール推奨
+変数：スネークa_var
+定数：全大文字スネークCONST_A
+グローバル変数：スネーク
+関数：スネーク
+関数の引数：スネーク
+クラス：パスカルClassName
+インスタンス変数：スネーク
+メソッド：スネーク
+パッケージ：スネーク
+モジュール：スネーク
+メインメモリからキャッシュにデータを読み込む際に、キャッシュサイズの上限を考えて、キャッシュ内に必要なデータを保存し、不要なデータを追い出すことを「キャッシュ・エビクション」と呼ぶ
+ちなみに、エビクション（eviction）は立ち退き，追い立てるという意味
+if __name__ == "__main__":
+__main__という文字列はPythonファイルをスクリプトとして直接実行した場合に自動で設定される。
+import hello した：hello .py内部で__name__はhelloという文字列に
+python hello .pyしたhello .py内部で__name__は __main__という文字列になる
+Pythonの __name__ という特殊な変数
+
+Pythonファイルのモジュール名が文字列で入る
+import helloの場合、hello .py内部での __name__ は 自動的に"hello" に
+
+python https://t.co/JVZnb2KIdz のようにプログラムを実行した場合、 https://t.co/JVZnb2KIdz の内部の __name__ 変数は__main__に
+docker build -t user_name/repository_name:tag .
+user_name:あなたのユーザー名
+repository_name:リポジトリ名（イメージ名）
+tag:タグ
+
+この時、タグ名を前回から変更すると、前回の記録は残したまま新しい更新をビルドすることができる。逆に、同じタグを指定すると上書きに。
+dockerのコンテナから抜ける方法
+dockerのコンテナから抜けたいときexitを使うと基本的にはコンテナが終了してしまうので注意！
+Ctrl+p Ctrl+qで抜ける
+VSCodeで、pythonのライブラリimportエラーが発生した時は、
+{
+    "python.pythonPath": "/usr/local/.pyenv/versions/3.9.1/bin/python"
+}
+みたいな感じで、パス指定をしたら直った
+
+※pythonPathは任意
+ゴールデンウィークも明けたからまた頑張ろう✨
+Service control policy can be used to deny access to any AWS Resource for root users in any accounts within the AWS ORG. IAM policy doesnt apply to root accounts while SCP can be used to deny or permit users. All SCPs are applied from a master account which is used to create ORG
+ソリューションアーキテクトアソシエイト(SAA-C02)に続き、取得できました！
+
+4月中に3個、マジしんどかった
+
+【AWS認定試験1週間で合格！】デベロッパーアソシエイト(DVA-C01)を自宅でオンライン受験した感想と学び
+#エンジニアと繋がりたい #プログラミング #AWS #資格取得
+https://t.co/GsoX9LiQxd
+Lambda関数のIteratorAgeが上がる理由
+ストリームベースの呼出しの場合、Lambdaは IteratorAgeを発行。イテレータ経過時間とは、バッチの最後のレコードが記録されてから、Lambdaがレコードを読取るまでの間の時間。イテレータの経過時間は、Lambda関数の実行時間、シャードの数、バッチサイズなど変化
+CloudFormation
+Outputsセクション(optional)は、他のスタックにimportする (クロススタック参照を作成)、応答として返す (スタック呼び出しについて記述)、または、AWS CloudFormationコンソールで表示する出力値を宣言。例:見つけやすいバケットを作成するスタックの S3 バケット名を出力できる
+Serviceの実体はDockerコンテナ
+Serviceというのは複数個のDockerコンテナの集合体
+例えば
+Front Serviceは2種類のコンテナから成り立つ
+expressのアプリケーション のコンテナ
+nginx(expressにプロキシする） のコンテナ
+API Serviceは１種類のコンテナから成り立つ
+Djangoを使ったAPI実装 のコンテナ
+ECSで言うServiceは、APIサーバーとか、フロントサーバーとかそういった単位の単機能なもの
+どんなコンテナを起動するのか:どのTask Definitionを使うかを指定
+何個起動するのか:Number of Tasksとして常時起動しておきたい個数を指定
+リクエスト分散するのか:コンテナとELBの紐付けを指定
+アトミックカウンタ
+他の書き込みリクエストを妨害せず、数値をカウントアップ/ダウンするカウンタのこと。アクセスカウンタのような、1回の操作につき必ず1ずつカウントアップするような仕組み
+DynamoDBには、シーケンスオブジェクトとか無い。
+DB側で採番を実現したいなら、アトミックカウンタを使う
+Read-through cache
+Write-through cache
+Write-around cache
+Write-back (or write-behind) cache https://t.co/aqlwvYwJwo
+In write-around pattern, writes go directly to DynamoDB. Only the data that is read—and thus has a higher potential to be read again—is cached.
+A write-through cache is advantageous for read-heavy workloads and doesn’t help with latency or throughput for write-heavy workloads.
+appspec.ymlにはCodeDeployで実行するデプロイ処理の内容を具体的に書くやつ。デプロイするファイルやデプロイ前後の処理を記述できる。仕様のようなもの
+CodeBuildはビルド時に実行するシェルコマンドを buildspec.ymlに記述
+このファイルをソースコードのトップディレクトリに設置しておくことで、CodeBuildがその内容を読み込み実行するという流れ。※このファイルは必ずしも必要ではなくマネジメントコンソールからアドホックに設定することも可能
+While creating events hooks for Blue/Green Deployment, the following events can have scripted files.
+ApplicationStart
+ApplicationStop
+BeforeInstall
+AfterInstall
+ValidateService
+BeforeAllowTraffic
+AfterAllowTraffic
+BeforeBlockTraffic
+AfterBlockTraffic.
+While users who can't call AWS KMS encrypt outside of AWS should use asymmetric CMKs, use a symmetric to encrypt data stored or managed in an AWS service. Services integrated with AWS KMS use symmetric CMKs to encrypt your data which  dont support encryption with asymmetric CMKs.
+If the JSON object is 7Kb of size, the maximum size allowed with the KMS encryption() method is 4kb, so you will need to encrypt using Envelope Encryption.
+SOAPとは、XMLを使ったプロトコル。データのやり取りにHTTPリクエストとレスポンスにXMLを使用。
+XML：コンピュータが読み取りやすいように作成されたデータフォーマットの一種でタグで括る
+HTTPreqのヘッダ内にXMLを格納し対向に通信を送り、 受け取る際にはHTTPresのヘッダ内に格納されたXMLを取出す
+Rolling deployment with an Additional Batch
+maintain full capacity during deployments.
+configure your environment to launch a new batch of instances before taking them out of service. When the deployment completes, Elastic Beanstalk terminates the additional batch of instances.
+When requiring data durability, enable Redis Append-Only File feature (AOF). When it's on, node writes all commands that change cache data to an append-only file. When a node is rebooted &amp; cache engine starts, AOF is "replayed." Result is  warm Redis cache with all data intact
+By default, the data in a Redis node on ElastiCache resides only in memory and isn't persistent. If a node is rebooted, or if the underlying physical server experiences a hardware failure, the data in the cache is lost.
+Don't use the Customer Key to encrypt and decrypt data directly.
+Use GenerateDataKey to get data encryption key.
+Use plaintext data encryption key to encrypt data locally, then erase plaintext data key from memory.
+Store encrypted data key alongside locally encrypted data.
+ジッターとは、random関数を用いたジッター（ゆらぎ）を導入することを指す。これによりリクエスト間のタイミングの衝突を回避する効果がある。
+エクスポネンシャル・バックオフは、リクエスト処理が失敗した後のリトライの際、現実的に成功しそうな程度のリトライを、許容可能な範囲で徐々に減らしつつ継続するアルゴリズム。
+例：再試行する度に、1、2、4秒後と指数関数的に待ち時間を追加して全体のリトライ回数を抑え効率的なリトライを実現
+One write request unit represents 1 write for an item up to 1 KB in size. If you need to write an item larger than 1 KB, DynamoDB needs to consume additional write request units. Transactional write requests require 2 write request units to perform 1 write for items up to 1 KB
+One read request unit represents one strongly consistent read request, or two eventually consistent read requests, for an item up to 4 KB in size. Two read request units represent one transactional read for items up to 4 KB.
+DynamoDB
+You can use "Reduce page size" to minimize the impact of a scan on a table's provisioned throughput. Because a Scan operation reads an entire page (by default, 1 MB), you can reduce the scan operation's impact by setting a smaller page size.
+Control the behaviors of your API's frontend interactions by configuring the method request and a method response.
+Control the behaviors of your API's backend interactions by setting up the integration request and integration response.
+Rolling deployment deploys the new version in batches. Each batch is taken out of service during the deployment phase, reducing your environment's capacity by the number of instances in a batch.
+All at once deployment deploys the new version to all instances simultaneously. All instances in your environment are out of service for a short time while the deployment occurs.
+With Blue Green deployments, you can have a separate deployment environment as well.
+ElasticBeanstalk
+Immutable deployments perform an immutable update to launch a full set of new instances running the new version of the application in a separate Auto Scaling group, alongside the instances running the old version.
+CodeDeployDefault.
+ECSLinear10PercentEvery1Minutes
+全トラフィック移行まで、毎分10%移行
+ECSLinear10PercentEvery3Minutes
+3分ごとに10%
+ECSCanary10Percent5Minutes
+最初の増分で10%を移行。残りの90%は5分後にデプロイ
+ECSCanary10Percent15Minutes
+最初の増分での10%を移行。残りの90%は15分後
+先週に続き、今週は気合いで中級に挑戦！
+
+勝ったどぉぉおおお٩( ᐛ )و
+
+【AWS認定試験】ソリューションアーキテクトアソシエイトを自宅でオンライン受験した感想と学び
+#エンジニアと繋がりたい #エンジニアのリモートワーク #プログラミング #AWS #AWSCertified #資格取得 
+https://t.co/6uAUfyBdTF
+Previously, Amazon S3 performance guidelines recommended randomizing prefix naming with hashed characters to optimize performance for frequent data retrievals. You NO LONGER have to randomize prefix naming for performance and can use sequential date-based naming for your prefixes
+S3の整合性
+・新しいオブジェクトのPUTは書き込み後の読み込み整合性(read-after-write consistency)
+・上書きPUTおよびDELETEは結果整合性(eventual consistency)
+だったが、
+上書きPUTとDELETEに対する「強い書き込み後の読み込み整合性」もサポートされた
+cloudfront料金
+1. Amazon S3 バケットのストレージに対する課金
+2.エッジロケーションからのオブジェクトの供給に対する課金
+3. オリジンへのデータの送信に対する課金。 ユーザーがデータをオリジンに転送すると、CloudFront 料金が発生。転送データにはDELETE、OPTIONS、PATCH、POST、PUTリクエスト
+POSIXによって定められていることは、カーネルへのC言語のインタフェースであるシステムコール、プロセス環境、ファイルとディレクトリ、システムデータベース（パスワードファイルなど）、アーカイブフォーマットなど多岐にわたる。
+POSIX（ポジックスPortable operating system interface）は、移植性の高いアプリケーションソフトウェアの開発を容易にすることを目的として、主にUNIX系のOSに関して、各OSが共通して持つべきAPIについて定めたIEEE規格
+For each VPN Tunnel, AWS provides two different VPN endpoints. ECMP (Equal Cost Multi-Path) can be used to carry traffic on both VPN endpoints, increasing performance &amp; faster data transfer. ECMP needs to be enabled on Client end devices &amp; not on the VGW end.
+インターフェース型（PrivateLink）
+各 AZ でエンドポイント料金が発生（0.01 USD/時間)
+エンドポイントへの名前解決はプライベート IP
+オンプレミス側からアクセス可能
+別リージョンからアクセス可能
+VPCエンドポイント
+ゲートウェイ型
+・エンドポイント料金は無料
+・対応しているサービスは S3 と DynamoDB のみ
+・エンドポイントへの名前解決はグローバル IP のまま（ルートテーブルにより、VPC エンドポイントに向けられる）
+・オンプレミス側からアクセス不可
+・別リージョンからアクセス不可
+AWS認定クラウドプラクティショナー試験に合格できました〜✨
+
+素直に、嬉しす！
+
+初級クリア♪
+次はアソシエイツとるぞー٩( ᐛ )و
+
+【AWS認定試験】クラウドプラクティショナーを自宅受験してみての感想と学び
+#エンジニア #プログラミング #AWS #資格取得 #certification 
+https://t.co/M7KuKbyqUh
+エンベロープ暗号化とは、データ暗号鍵 (DEK) を使用してデータを暗号化し、次にその DEK を、ユーザーが完全に管理できるルート鍵を使用して暗号化する手法
+FIFO, first in first out 
+「先に入れたもの（古いもの）から出すよ！」なやり方のこと。
+複数の対象（キューとか）を列として待機させて、順番に処理するときの順序の話。
+逆は
+「後入先出（LIFO: last in first out ）」
+DNSの世界におけるTTLは単純に「有効期限」
+つまり、キャッシュの有効期限ってこと
+ネットワークのTTL(Time to Live)はパケット（通信用に細切れにしたデータ）にくっつく情報の一つで、その特徴は
+数字、機器を1つ経由する毎に数字を1減らす、数字が「0」になったら、その時点で中継を止める
+TTLによって、パケットがネットワーク上で永遠に放浪するのを回避。(終わりができる)
+EFA ENI と ENA ENI の違い
+ENAは、従来のIP Network機能でVPC Networkをサポート。EFAは、ENAの全機能+拡張プログラミングインタフェイスを使用したOSバイパス通信を伴わずにアプリがEFAと直接通信するためのハードウェアサポートを提供。EFAは、起動時/停止したインスタンスにのみ接続
+Lustre (ラスター) は、大規模クラスターコンピューティング・スーパーコンピュータで使用される分散ファイルシステム。LinuxとClusterが由来。GNU GPL v2の下で公開。小規模から大規模なマルチロケーションに及ぶ広い範囲のクラスタに対して、ハイパフォーマンスなファイルシステムを提供
+AWS trusted advisor
+cost optimization
+performance
+security 
+faulttolerance
+service limits
+Multivalue answer routing lets you configure Amazon Route 53 to return multiple values, such as IP addresses for your web servers, in response to DNS queries. You can specify multiple values for almost any record, but this routing also lets you check the health of each resource
+バックアップ＆リストア：バックアップファイルのみを別リージョンに退避
+パイロットライト：停止サーバーを別リージョンに用意、障害発生時に立ち上げ
+ウォームスタンバイ：平常時は最小限のリソースでサーバーを起動、非常時にサーバースケール
+マルチサイト：常時複数のリージョンでサービス提供
+ACID：トランザクションの性質
+原子性:Atomicity
+タスクが全実行か無実行を保証
+一貫性:Consistency
+開始と終了時に予め決められた整合性を満たす
+独立性:Isolation
+操作の過程を他の操作から隠蔽
+永続性:Durability
+完了通知を受けた時点で操作が永続的に（結果が失われない
+運用上の優秀性Operational Excellence：モニタリングも含める
+ステートレス例
+店員：いらっしゃいませ。ご注文をどうぞ。
+客：ハンバーガーセットをください。
+店員：サイドメニューはどうしますか？
+客：ハンバーガーセット、サイドメニューはポテトで。
+店員：ドリンクはどうされますか？
+客：ハンバーガーセット、サイドメニューはポテト、ドリンクはコーラで。
+ステートレスはサーバーがクライアントのユーザーがどこまで操作したか等セッション情報を持たないこと
+ユーザーが途中まで操作した段階でスケールインしサーバー数が減っても、常にユーザーが全データを送信するから、スケールイン・スケールアウトが発生してもスムーズなシステム運用が可能
+@tarotluna2 ありがとうございます！そうなんです、エンジニアとして奮闘中です◎技術のことに関してつぶやきが多いと思いますが、よろしくお願いします🙇‍♂️
+Geo-proximity routing policy can be used to route traffic based upon the location of the RESOURCE.
+Geo-location routing policy can be used to route traffic based upon USER LOCATION.
+permitted service
+o Amazon EC2 instances, NAT Gateways, and Elastic Load Balancers
+o Amazon RDS
+o Amazon CloudFront
+o Amazon Aurora
+o Amazon API Gateways
+o AWS Lambda and Lambda Edge functions
+o Amazon Lightsail resources
+o Amazon Elastic Beanstalk environments
+ペネトレーションテストとは、ネットワークに接続されているコンピュータシステムに対し、実際に既知の技術を用いて侵入を試みることで、システムに脆弱性がないかどうかテストする手法のこと。侵入実験または侵入テストとも言われる。
+AWS Well-Archtected Framework
+運用上の優秀性Operational Excellence自動化
+セキュリティSecurity秘匿性、権限、監視
+信頼性Reliability可用性、復旧
+パフォーマンス効率Performance Efficiency必要な分だけの使用、モニタリング
+コストCost Optimizationコストの把握と分析、節約
+RAID（レイド:Redundant Arrays of Inexpensive Disks）とは、複数のHDDを組合わせることで、1台の仮想的なHDDとして認識させて冗長性を向上させる技術。障害時でもデータの復旧/アクセスが可能。分散書き込みによるデータ保存を高速化。「バックアップ」とは異なる概念の技術
+https://t.co/cb92e2q8pK
+vscodeのgoのimportエラー修正
+GO111MODULEをONにしてモジュールモードにしていsて、(GOPATHモードではない)
+vscodeでサブディレクトリにgo.modを管理している場合は、experimentalWorkspaceModuleを有効化する必要がある。
+
+"gopls": {
+        "experimentalWorkspaceModule": true
+}
+ターミナルで、パイプ(|)とpbcopyを使うと、そのターミナルコマンドの出力がクリップボードにコピーされる。
+
+pwd | pbcopy
+
+カレントディレクトリのパスがコピーできる
+path_append ()  { path_remove $1; export PATH="$PATH:$1"; }
+path_prepend () { path_remove $1; export PATH="$1:$PATH"; }
+path_remove ()  { export PATH=`echo -n $PATH | awk -v RS=: -v ORS=: '$0 != "'$1'"' | sed 's/:$//'`; }
+で関数を追加
+
+$ . ~/.bashrc
+$ path_remove ~/sh
+PATH消せる
+JWTを使った認証を実装してみたくて、その事前準備として、まずはログインフォームを用意◎
+
+フォームムム仏
+
+【Angular】親から子コンポーネントに値を渡すリアクティブフォーム作ってみた
+#エンジニアと繋がりたい #プログラミング #Angular #TypeScript #javascript 
+https://t.co/dQsGwQ1JZ7
+Amazon DynamoDB（マネージド NoSQL データベース）
+フルマネージド型でマルチリージョン
+マルチアクティブで耐久性があるデータベース
+セキュリティ、バックアップと復元、インターネット ... 事実上無制限のスループット
+AWS TCO: AWSクラウドへ移行した時の推定節約金額
+go-ginでpostで送ったオブジェクトを受け取るときは
+func aaa(c *gin.Context) {
+var user model.User
+c.BindJSON(&amp;user)
+...
+
+こんな感じにしてバインドする
+メモ
+Goのinit( )はいつどういう順番で呼ばれるか
+パッケージのインポート
+→パッケージ中の各種変数の初期化
+→パッケージ中の各種init()関数の呼び出し
+→main関数の呼び出し
+いつもGoがメインなんだけど、
+AWSのLambdaを使った時に、runtimeとして、Python推しな雰囲気があって、基本的な文法を知らなかったので、ちゃんとお勉強してみました٩( ᐛ )و
+
+タオPYPY!!!!
+
+【Python】基本的な文法まとめ
+#エンジニアと繋がりたい #Python #プログラミング
+https://t.co/Xyh2onFxrO
+リクエスト/レスポンス：可用性 遅延　品質
+データ処理：カバレッジ　正確性　鮮度　スループット
+ストレージ：スループット　遅延
+SRE用語
+・SLA(サービスレベル保証)
+お客との握り。契約する時の指標 。クリアしなかったら補填するよみたいな。
+SRE用語
+エラー予算(許容できる不具合の割合)
+「1 - SLO」の関係
+予算が残っている限りは通常のDEV OPSのリズムを崩さないが、
+エラーが起こり始めると、エラー予算が減っていって　Burn Rateが高まると障害の可能性じゃね？閾値超えてないけど、危なそう。
+で、確認の流れ。
+SRE用語
+・SLO(サービスレベル目標)
+99.99%とか漠然だけど目標にする指標な感じ。
+例：
+可用性99.9%とか、測定期間も
+
+例：
+過去28日間目標99.9%
+
+一時的に99.5%でクリアしてなくても、平均で見る。
+
+年間4.38時間、30日間21.6分 不具合の許容
+
+システム全落ちの場合は21.6分
+10%なら3.6時間
+1% 36時間
+SRE用語
+SLI(サービスレベル指標)
+サービスが必要十分に機能していることを示す指標
+SLIは複数設定する
+例：
+ DBなら、select文が返ってきたカウント
+リクエストの500番以外が返ってくる割合
+ログインできたら1とカウント
+エラーが起こったら1とカウント
+とか
+SRE用語
+・CUJ(クリティカルユーザージャーニー)
+ユーザーが目的を完遂するために行う特定の動作
+例：大手の現場社員、コンソールからログインして、直近3日間の売り上げデータをクエリして、スプレッドシートにペーストする
+Dev:開発
+Ops:運用保守
+SREはSite Reliability Engineering、システムの信頼性に焦点をおく。特にユーザー目線で。
+我が社のCTOのお言葉
+「みんなLambdaくらい使えるようになっていてほしいね〜」
+により感化され、いざ、実践！
+
+う、動いた✨
+
+【AWS Lambda+API Gateway】Pythonでslack通知アプリ作ってみた
+#エンジニアと繋がりたい #プログラミング #AWS #lambda #API #slack #Python 
+https://t.co/d75SkrTk6e
+ある案件でAngularでローカル開発してたので、Dockerコンテナ内にWebサーバ立ち上げて開発してみようと挑戦！奥ゆかしい✨
+
+【Docker+Nginx+Angular】Dockerfileでイメージ作ってMacでアプリ立ち上げてみた
+#エンジニアと繋がりたい #プログラミング #Docker #nginx #angular
+https://t.co/5aYmE4avsD
