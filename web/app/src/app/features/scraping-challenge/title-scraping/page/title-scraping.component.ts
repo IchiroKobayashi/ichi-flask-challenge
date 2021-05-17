@@ -26,6 +26,7 @@ export class TitleScrapingComponent implements OnInit, OnDestroy {
   destroyed$ = new Subject();
   private subscriptions: Array<Subscription> = [];
   tweets: Array<string>;
+  limit: number = 10;
   isTweet: boolean = false;
   twitterUserName: string;
   texts: { [key:string]: string};
@@ -47,11 +48,24 @@ export class TitleScrapingComponent implements OnInit, OnDestroy {
     this.pageReady = true;
   }
 
-  getTweets(): void {
+  getTweetsById(): void {
     this.tweets = [];
     this.isTweet = false;
     this.subscriptions.push(
-      this.service.getTweets(this.twitterUserName).subscribe(response => {
+      this.service.getTweetsById(this.twitterUserName, this.limit).subscribe(response => {
+        if(response.tweets.length > 0) {
+          this.isTweet = true;
+        }
+        this.tweets = response.tweets;
+      })
+    );
+  }
+
+  getHondaTweets(): void {
+    this.tweets = [];
+    this.isTweet = false;
+    this.subscriptions.push(
+      this.service.getHondaTweets(this.limit).subscribe(response => {
         if(response.tweets.length > 0) {
           this.isTweet = true;
         }

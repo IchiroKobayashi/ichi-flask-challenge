@@ -12,12 +12,24 @@ export class TitleScrapingService {
   ) {
   }
 
-  getTweets(twitterUserName: string): Observable<TweetScrapingEntity>{
+  getTweetsById(twitterUserName: string, limit?: number): Observable<TweetScrapingEntity>{
     return this.http.get<TweetScrapingEntity>(
-      ScrapingChallengeConst.API_URL + 'scrape',
+      ScrapingChallengeConst.API_URL + 'getTweetsById',
       {
         params:{
-          twitterUserName: twitterUserName
+          twitterUserName: twitterUserName,
+          limit: limit + ''
+        }
+      }
+    )
+  }
+
+  getHondaTweets(limit?:number): Observable<TweetScrapingEntity>{
+    return this.http.get<TweetScrapingEntity>(
+      ScrapingChallengeConst.API_URL + 'getHondaTweets',
+      {
+        params:{
+          limit: limit + ''
         }
       }
     )

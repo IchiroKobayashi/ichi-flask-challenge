@@ -26,7 +26,8 @@ for tweet in tweets:
     jst_time = tweet.created_at + datetime.timedelta(hours=9)
 
     # Get Full Texts of Usertimeline Tweets
-    print('tweet: %s, jst_time: %s' % (tweet.full_text, jst_time))
+    # print('tweet: %s, jst_time: %s' % (tweet.full_text, jst_time))
+    print(tweet)
     tweet_texts.append(tweet.full_text + '\n')
 
 # Output as File

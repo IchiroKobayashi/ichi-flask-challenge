@@ -12,8 +12,16 @@
 
 <h3>Twitterのユーザーのつぶやきを解析して、そのユーザーがつぶやきそうなつぶやきを返すよ◎</h3>
 <p>タグ：マルコフ連鎖、自然言語処理、形態素解析、Twitter、つぶやき解析、bot</p>
-<p><input type="text" name="twitterUserName" size="50" placeholder="@ユーザー名を記入してください" [(ngModel)]="twitterUserName"></p>
-<p><button (click)='getTweets()'>Get Tweets</button></p>
+<p>取得数：
+  <select [(ngModel)]="limit">
+    <option *ngFor="let n of [0,1,2,3,4,5,6,7,8,9]">{{ n + 1 }}</option>
+  </select>
+</p>
+
+<p>＠：<input type="text" name="twitterUserName" size="50" placeholder="ユーザー名を記入してください" [(ngModel)]="twitterUserName"></p>
+<p><button (click)='getTweetsById()'>Get Tweets from a Specified Account</button></p>
+
+<p><button (click)='getHondaTweets()'>Generate Tweets like Keisuke Honda</button></p>
 
 <ul id="tweets" *ngIf="isTweet">
   <li *ngFor="let tweet of tweets">
