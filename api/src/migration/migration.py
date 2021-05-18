@@ -6,3 +6,6 @@ def initialize_migration():
 
 def execute_migration():
     subprocess.run("./migration/execute_migration.sh", shell=False, stdout=PIPE, stderr=PIPE, text=True)
+
+def exec_seed():
+    subprocess.run("./migration/exec_seed.sh", shell=False, stdout=PIPE, stderr=PIPE, text=True)

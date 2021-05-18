@@ -9,3 +9,4 @@ flask-marshmallow==0.14.0
 marshmallow-sqlalchemy==0.25.0
 Flask-Migrate==3.0.0
 tweepy==3.10.0
+Flask-Seeder==1.2.0

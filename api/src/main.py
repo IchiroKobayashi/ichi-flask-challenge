@@ -16,6 +16,7 @@ def create_app():
     app.config.from_object(config.Config) # TODO: config.config.Configを''でくくる？
     db.init_db(app)
     db.init_ma(app)
+    db.init_seeder(app)
 
     # Register Router Instance
     app.register_blueprint(router.router)
@@ -37,6 +38,8 @@ if __name__ == "__main__":
     if not os.path.exists('./migrations'):
         migration.initialize_migration()
     migration.execute_migration()
+    # Comment out when unnecessary
+    # migration.exec_seed()
 
     # Run Flask App
     app.run(host='0.0.0.0', debug=True, port=8080, threaded=True)
