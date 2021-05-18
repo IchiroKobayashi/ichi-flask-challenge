@@ -1,5 +1,5 @@
 from flask_seeder import Seeder, Faker, generator
-import sys, time
+import sys
 sys.path.append('../')
 from model import models
 
@@ -23,6 +23,7 @@ class UserSeeder(Seeder):
                 "created_by": 'system',
                 "updated_at": None,
                 "updated_by": '',
+                "email": generator.String('[a-z]\d{4}\c{3}@test.com')
             }
         )
 

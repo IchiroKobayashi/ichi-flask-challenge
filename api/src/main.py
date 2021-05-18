@@ -5,7 +5,7 @@ import os
 import router
 from config import config
 import db
-from model import models
+# from model import models
 from migration import migration
 
 def create_app():
@@ -13,7 +13,7 @@ def create_app():
     app = Flask(__name__)
 
     # Read DB setting & Initialize
-    app.config.from_object(config.Config) # TODO: config.config.Configを''でくくる？
+    app.config.from_object(config.Config)
     db.init_db(app)
     db.init_ma(app)
     db.init_seeder(app)
@@ -37,10 +37,10 @@ if __name__ == "__main__":
     # Migrate before running App 
     if not os.path.exists('./migrations'):
         migration.initialize_migration()
-    migration.execute_migration()
+    migration.exec_migration()
     # Comment out when unnecessary
-    # migration.exec_seed()
+    migration.exec_seed()
 
     # Run Flask App
-    app.run(host='0.0.0.0', debug=True, port=8080, threaded=True)
+    app.run(host='0.0.0.0', debug=True, port=8080, threaded=True, use_reloader=False)
     
