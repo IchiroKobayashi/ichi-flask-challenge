@@ -39,7 +39,7 @@ if __name__ == "__main__":
         migration.initialize_migration()
     migration.exec_migration()
     # Comment out when unnecessary
-    migration.exec_seed()
+    # migration.exec_seed()
 
     # Run Flask App
     app.run(host='0.0.0.0', debug=True, port=8080, threaded=True, use_reloader=False)

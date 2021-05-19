@@ -4,3 +4,4 @@ db/db-data/
 api/src/logs/application.log
 api/src/.env
 api/src/logs/application.log*
+api/src/text/auth.text
