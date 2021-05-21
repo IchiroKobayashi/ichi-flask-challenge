@@ -9,7 +9,7 @@ router = Blueprint('router', __name__)
 with open("./config/logging.json", "r", encoding="utf-8") as f:
     config.dictConfig(load(f))
 
-@router.route("/", methods=['GET'])
+@router.route("/api", methods=['GET'])
 @logger.http_request_logging
 @auth.requires_auth
 def hello_world():
